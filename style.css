@@ -1,0 +1,215 @@
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400 800;
+    src: url('/assets/fonts/Inter-VariableFont_slnt\,wght.ttf') format('truetype');
+  }
+
+@layer reset {
+    /* Box sizing rules */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    /* Prevent font size inflation */
+    html {
+        -moz-text-size-adjust: none;
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+    }
+
+    /* Remove default margin in favour of better control in authored CSS */
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    figure,
+    blockquote,
+    dl,
+    dd {
+        margin: 0;
+    }
+
+    /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+    ul[role='list'],
+    ol[role='list'] {
+        list-style: none;
+    }
+
+    /* Set shorter line heights on headings and interactive elements */
+    h1,
+    h2,
+    h3,
+    h4,
+    button,
+    input,
+    label {
+        line-height: 1.1;
+    }
+
+    /* Balance text wrapping on headings */
+    h1,
+    h2,
+    h3,
+    h4 {
+        text-wrap: balance;
+    }
+
+    /* A elements that don't have a class get default styles */
+    a:not([class]) {
+        text-decoration: none;
+        text-decoration-skip-ink: auto;
+        color: currentColor;
+        &:hover {
+            color: var(--clr-yellow);
+        }
+    }
+
+    /* Make images easier to work with */
+    img,
+    picture {
+        max-width: 100%;
+        display: block;
+    }
+
+    /* Inherit fonts for inputs and buttons */
+    input,
+    button,
+    textarea,
+    select {
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    /* Make sure textareas without a rows attribute are not tiny */
+    textarea:not([rows]) {
+        min-height: 10em;
+    }
+
+    /* Anything that has been anchored to should have extra scroll margin */
+    :target {
+        scroll-margin-block: 5ex;
+    }
+}
+
+@layer base {
+    :root {
+        --clr-green: hsl(75, 94%, 57%);
+        --clr-white: hsl(0, 0%, 100%);
+
+        --clr-grey-700: hsl(0, 0%, 20%);
+        --clr-grey-800: hsl(0, 0%, 12%);
+        --clr-grey-900: hsl(0, 0%, 8%);
+
+        --fs-400: 14px;
+        --fs-900: 24px;
+
+        --gap-xs: 4px;
+        --gap-sm: 8px;
+        --gap-md: 12px;
+        --gap-lg: 16px;
+        --gap-xl: 24px;
+        --gap-xxl: 40px;
+    }
+
+    body {
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        line-height: 1.5;
+        background-color: var(--clr-grey-900);
+        color: var(--clr-white);
+        text-align: center;
+    }
+}
+
+@layer components {
+    .profile {
+        background-color: var(--clr-grey-800);
+        padding: var(--gap);
+        border-radius: .75rem;
+
+        @media (max-width: 500px) {
+            margin-inline: var(--gap-xl);
+        }
+    }
+
+    .profile-avatar,
+    .profile-location,
+    .profile-description {
+        margin-block-end: var(--gap-xl);
+    }
+
+    .profile-location,
+    .profile-description,
+    .profile-social-links a {
+        font-size: var(--fs-400);
+    }
+
+    .profile-location,
+    .profile-social-links a {
+        font-weight: 700;
+    }
+
+    .profile-avatar {
+        margin-inline: auto;
+        border-radius: 50%;
+        width: 5.5rem;
+        aspect-ratio: 1;
+    }
+
+    .profile-name {
+        font-weight: 600;
+        font-size: var(--fs-900);
+        margin-block-end: var(--gap-xs);
+    }
+
+    .profile-location {
+        color: var(--clr-green);
+    }
+
+    .profile-description {
+        padding-inline: var(--gap-sm);
+    }
+
+    .profile-social-links {
+        display: grid;
+        gap: var(--gap-lg);
+        & a {
+            padding-block: .75rem;
+            background-color: var(--clr-grey-700);
+            border-radius: .5rem;
+
+            &:hover, :focus-visible {
+                background-color: var(--clr-green);
+                color: var(--clr-grey-700)
+            }
+        }
+    }
+
+    .attribution {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translate(-50%);
+        font-size: 11px;
+        text-align: center;
+    }
+    .attribution a {
+        color: hsl(228, 45%, 44%);
+    }
+}
+
+@layer utilities {
+    .grid {
+        display: grid;
+
+        &[data-pos="center"] {
+            place-items: center;
+        }
+    }
+}
